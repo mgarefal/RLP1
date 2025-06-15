@@ -9,6 +9,7 @@
       {% if current_user.is_authenticated %}
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
         {% if JinStr(current_user.workingStatus[0]) != "spectator" %}
+        <!--
         <li>
           <a class="dropdown-item" href="/remote_lab1/">{{ _('Remote Lab (Node-red)') }}</a>
         </li>
@@ -18,6 +19,7 @@
         <li>
           <a class="dropdown-item" href="/remote_lab1_embedded3/">{{ _('Remote Lab 1 (embedded)') }}</a>
         </li>
+        -->
         <li>
           <a class="dropdown-item" href="/remote_lab1_test/">{{ _('Remote Lab 1 (Test)') }}</a>
         </li>

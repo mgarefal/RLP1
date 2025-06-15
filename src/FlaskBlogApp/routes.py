@@ -984,7 +984,8 @@ def handle_slider(slider_value):
 @app.route("/remote_lab1_monitor/")
 @login_required
 def remote_lab1_monitor():
-    return render_template("remote_lab1_monitor.html")
+    cameras = load_cameras_from_env()
+    return render_template("remote_lab1_monitor.html",cameras=cameras)
         
 
 @app.route("/remote_lab1_embedded/",methods=["GET", "POST"])
