@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Remote Lab Shadow Controller Serial
+{% endblock title %}
+
+
+{% block content %} 
+<table class="my-3 p-3 bg-body rounded shadow-sm" style="width: 100%;">
+  <tr>
+    <td style="width: 50%;" rowspan="2">
+      <!-- First Object -->
+      <object data="http://192.168.1.3:8554" width="800" height="600"></object>
+      <a href="http://garefalakis.hopto.org:8554" target="_blank">Open video in new tab</a>
+
+      <!-- Second Object -->
+      <div class="row my-3 p-3 bg-body rounded shadow-sm">
+        <object data="http://192.168.1.4:8555" width="600" height="600"></object>
+      </div>
+    </td>
+  </tr>
+</table>
+<!-- Textbox to display serial data -->
+<div class="row my-3 p-3 bg-body rounded shadow-sm">
+  <textarea id="serialData" rows="10" cols="50"></textarea>
+</div>
+
+<script>
+  function updateSerialData(data) {
+    var textarea = document.getElementById("serialData");
+    textarea.value += data + "\n";  // Append data to textarea with a newline
+  }
+
+  function fetchSerialData() {
+    // Make AJAX request to fetch serial data
+    fetch('/serial-shadow-data/')
+    .then(response => response.json())
+    .then(data => updateSerialData(data.data))
+    .catch(error => console.error('Error fetching serial data:', error));
+  }
+
+  // Call fetchSerialData() repeatedly to fetch serial data continuously
+  setInterval(fetchSerialData, 1000);  // Adjust interval as needed
+
+
+</script>         
+          
+          
+          </div>
+        </div>
+      </div>
+      <div class="row my-3 p-3 bg-body rounded shadow-sm">
+        
+      </div>
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+          
+      </div>
+    </div>
+          
+
+{% endblock content %}

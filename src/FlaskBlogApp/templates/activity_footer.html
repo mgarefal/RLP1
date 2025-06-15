@@ -1,0 +1,76 @@
+{% if current_user.is_authenticated %}
+<style>
+    footer {
+        background-color: black;
+        color: white;
+    }
+
+    .footer-icon {
+        height: 40px;
+        width: auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        filter: drop-shadow(0 0 0px #00fff7);
+    }
+
+    .footer-icon:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px #00fff7);
+    }
+
+    h3, p {
+        color: white;
+    }
+</style>
+
+<footer class="page-footer font-small stylish-color-dark pt-1 mt-4">
+    <div>
+        <h3>Χρήστης: {{ panel_data.user_name }}  Ρόλος: {{ panel_data.user_role}} Ώρα Σύνδεσης: {{ panel_data.user_loggedTime }}</h3>
+
+        {% if panel_data.ActiveActivityID != '-1' %}
+        <h3>Τίτλος Δραστηριότητας: {{ panel_data.ActiveActivityTitle }} </h3>
+
+        <div class="footer">
+          <div class="container">
+              <div class="row">
+                {% if panel_data.user_role != 'spectator' %}
+                  <div class="col-2 border d-flex flex-column align-items-center">
+                      <!-- Left Part -->
+                      <div class="row flex-fill">
+                          <div class="col text-center my-auto">
+                              <a href="/reset_activity/">
+                                  <img src="{{ url_for('static', filename='images/reload.png') }}" alt="Reload Activity" class="footer-icon">
+                              </a>  
+                          </div>
+                          <div class="col text-center my-auto">
+                              <a href="/activity_status/">
+                                  <img src="{{ url_for('static', filename='images/play.png') }}" alt="Feedback Activity" class="footer-icon">
+                              </a>
+                          </div>
+                      </div>
+                      
+                      <div class="row flex-fill">
+                          <div class="col text-center my-auto">
+                              <a href="/submit_activity/{{ panel_data.ActiveActivityID }}">
+                                  <img src="{{ url_for('static', filename='images/ok.png') }}" alt="Submit Activity" class="footer-icon">
+                              </a>                    
+                          </div>
+                      </div>
+                  </div>
+                {% endif %}       
+
+                <div class="col-8">
+                    <!-- Center Part -->
+                    <div class="row h-120">
+                        <div class="col-12 border text-center d-flex align-items-center justify-content-center">
+                            <p style="font-size: 24px;">{{ panel_data.ActiveActivityBody }}</p>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+          </div>
+        </div>
+        {% endif %}
+    </div>
+</footer>
+{% endif %}

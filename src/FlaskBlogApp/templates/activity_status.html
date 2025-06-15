@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ activity.activity_title }}
+{% endblock title %}
+
+{% block content%}
+  <main role="main" class="container">
+    <a class="article_title">{{activity.activity_title}}</a>
+    <p>{{activity.activity_microacts}}</p>
+    <p>Η δραστηριότητα ζητάει να γίνουν τα παρακάτω:</p>
+    <ol type="1">
+      {% for A in ActivityMicroActivitiesDescs %}
+        <li>{{A}}</li>
+      {% endfor %}
+    </ol>
+
+    <hr>
+
+    <p>Ο χρήστης έχει κάνει τις παρακάτω μικροδραστηριότητες με τη σειρά που ακολουθει:</p>    
+    <ol type="1">
+      {% for A in UserActivities %}
+        <li>{{A}}</li>
+      {% endfor %}
+    </ol>
+    
+    <hr>
+    
+    <p>Ο ελεγκτής παρακολούθησης αναφέρει: {{ControlerResult}}</p>    
+    
+  </main>   
+
+  <div>  
+    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('submit_activity', activity_id=activity.id) }}">Υποβολή</a>
+    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('reset_activity') }}">Επαναφόρτωση Δραστηριότητας</a>
+  </div>
+{% endblock content %}

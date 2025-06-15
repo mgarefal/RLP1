@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Νέα κράτηση χρονοθυρίδας
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>Κράτηση νέας χρονοθυρίδας</h1>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.date.label }}<br>
+        {{ form.date(id='datepicker') }}  <!-- Add an id for the date field -->
+        {% for error in form.date.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.start_hour.label }}<br>
+        {{ form.start_hour() }}
+        {% for error in form.start_hour.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+<style>
+    /* This will make the background of the datepicker white */
+    .ui-datepicker {
+        background: #fff;
+        border: 3px solid #ccc;
+    }
+</style>
+
+<!-- Add the JavaScript code at the end of the body -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    } );
+</script>
+
+
+        
+{% endblock content %}

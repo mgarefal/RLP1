@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    ΕΛΜΕΠΑ - Ελληνικό Μεσογειακό Πανεπιστήμιο
+{% endblock title %}
+
+
+{% block content %}
+
+<div id="countdown"></div>
+
+<script>
+    // Function to start the countdown
+    function startCountdown() {
+        var endDate = new Date();  // Replace this with your desired end date and time
+        endDate.setMinutes(endDate.getMinutes() + 10);  // Example: 10 minutes countdown
+
+        // Update the countdown every second
+        var countdownTimer = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = endDate - now;
+
+            // Calculate remaining time
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown in the "countdown" div
+            document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+
+            // If countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "Countdown Finished";
+            }
+        }, 1000);  // Update every second (1000ms)
+    }
+
+    // Call the startCountdown function when the page is loaded
+    window.onload = startCountdown;
+</script>
+        
+        <div class="row my-3 p-3 bg-body rounded shadow-sm" >
+
+          <div align="center" class="col col-md-12" >            
+              <img src="{{ url_for('static', filename='images/hmu_logo.png') }}" alt="" class="img-responsive a_image" width="320px" >                        
+          </div>
+    
+          <div class="col col-md-12">
+            <div align="center" >
+              <h1>Καλωσήρθατε στο Ελληνικό Μεσογειακό Πανεπιστήμιο</h1>
+            </div>
+            <div align="center" >
+              <h2>Εργαστήριο Μικροηλεκτρονικών και διαδικτύου των πραγμάτων</h2>
+              {{ current_user.workingStatus }}
+            </div>                                  
+          </div>
+        </div>        
+        
+{% endblock content %}

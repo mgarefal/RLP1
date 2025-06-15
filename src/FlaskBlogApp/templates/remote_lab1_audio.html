@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Audio Streaming
+{% endblock title %}
+
+
+{% block content %} 
+          <h1>Audio Streaming</h1>
+    <audio id="audioElement" controls></audio>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+    <script>
+        const audioElement = document.getElementById('audioElement');
+        const socket = io.connect();
+
+        socket.on('audio', function(data) {
+            const audioBlob = base64ToBlob(data);
+            const audioUrl = URL.createObjectURL(audioBlob);
+            audioElement.src = audioUrl;
+        });
+
+        function base64ToBlob(base64Data) {
+            const byteCharacters = atob(base64Data);
+            const byteArrays = [];
+
+            for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+                const slice = byteCharacters.slice(offset, offset + 512);
+                const byteNumbers = new Array(slice.length);
+                for (let i = 0; i < slice.length; i++) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                byteArrays.push(byteArray);
+            }
+
+            return new Blob(byteArrays, { type: 'audio/wav' });
+        }
+    </script>
+               
+
+{% endblock content %}
+
+

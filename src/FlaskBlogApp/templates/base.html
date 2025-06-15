@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+        {% endblock title%}
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontawesome/css/all.min.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<body>
+    
+    <div class="jumbotron">
+        <img src="{{ url_for('static', filename='images/HMU_transparent.png') }}" alt="Logo" class="logo">
+        <div class="title">
+            <h1>Remote Lab</h1>
+            <h2>{{ _('department_message') }}</h2>
+        </div>
+    </div>
+
+    {% include "navbar.html" %} 
+
+    <main role="main" class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if (category != 'left_footer') and (category != 'middle_footer') and (category != 'right_footer') %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                        {{ message | safe }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endif %}    
+                            {% endfor %}
+                        {% endif %}
+
+                {% endwith %}
+            </div>
+        </div>
+
+        {% block content %}
+        
+        {% endblock content %}
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+    {% include "activity_footer.html" %}
+    {% include "footer.html" %}
+<!-- Cartoon Chat Assistant -->
+
+<div id="cartoon-container" class="cartoon-hidden">
+    <div class="cartoon-avatar">
+      <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Cartoon Assistant">
+    </div>
+    <div class="chat-area">
+      <div class="chat-bubble" id="chat-bubble">Hi! How can I help you?</div>
+      <div class="button-row">
+        <button id="speak-button" title="Voice is OFF">
+          <i class="fas fa-volume-xmark"></i>
+        </button> 
+        <button id="mic-button" title="Click to speak">
+          <i class="fas fa-microphone"></i>
+        
+        </button>
+      </div>      
+      <input type="text" id="chat-input" placeholder="Type your message..." />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+  
+   
+  
+  <!-- Toggle Button -->
+      <button id="toggle-cartoon" title="Show/Hide Assistant">
+        <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Assistant Toggle" class="toggle-avatar">
+      </button>
+    
+  <style>
+      /* Toggle Assistant Button with Avatar Image */
+      #toggle-cartoon {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9999;
+      }
+      
+      #toggle-cartoon img.toggle-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease;
+      }
+      
+      #toggle-cartoon img.toggle-avatar:hover {
+        transform: scale(1.1);
+      }
+      
+      /* Cartoon Chat Container */
+      #cartoon-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      
+      .cartoon-hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(50px);
+      }
+      
+      .cartoon-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      
+      .cartoon-avatar img {
+        width: 120px;
+        height: auto;
+        border-radius: 50%;
+        animation: float 2s ease-in-out infinite;
+        cursor: pointer;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      /* Chat Area */
+      .chat-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+        margin-top: 10px;
+      }
+      
+      .chat-bubble {
+        background: #f0f0f0;
+        padding: 10px 15px;
+        border-radius: 15px;
+        font-family: sans-serif;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin-bottom: 5px;
+        width: 100%;
+      }
+      
+      #chat-input {
+        width: 100%;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 5px;
+      }
+      
+      #chat-send {
+        background: green;
+        border: none;
+        border-radius: 12px;  /* Rounded corners */
+        padding: 8px 16px;    /* Horizontal padding for wider shape */
+        font-size: 1.2rem;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        margin: 5px;
+      }
+
+      #mic-button:hover, #speak-button:hover, #chat-send:hover {
+        background: #45a049;
+        transform: scale(1.1);
+      }
+
+      /* Mic and Megaphone Buttons */
+      #speak-button, #mic-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.8rem;
+        transition: color 0.3s;
+        margin: 5px;
+      }
+      #speak-button {
+        color: #4CAF50; /* Green by default */
+      }
+
+      #speak-button.active {
+        color: #FF5722; /* Orange when active */
+      }
+      
+      /* Megaphone (Voice) Toggle Active State */
+      #speak-button.active {
+        color: #FF5722;
+      }
+      
+      /* Mic Button Active State */
+      #mic-button {
+        color: #2196F3;
+      }
+      
+      #mic-button.listening {
+        color: red;
+        animation: pulse 1s infinite;
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+      
+    </style>
+  
+  
+  <script>
+    let isSpeakingEnabled = false;  // Voice toggle flag
+  
+    const toggleButton = document.getElementById('toggle-cartoon');
+    const cartoonContainer = document.getElementById('cartoon-container');
+    const chatBubble = document.getElementById('chat-bubble');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const speakButton = document.getElementById('speak-button');
+    const speakIcon = speakButton.querySelector('i');
+    const micButton = document.getElementById('mic-button');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    
+    
+    // Toggle cartoon assistant visibility
+    toggleButton.addEventListener('click', () => {
+      cartoonContainer.classList.toggle('cartoon-hidden');
+      cartoonContainer.classList.toggle('cartoon-visible');
+    });
+  
+    speakButton.addEventListener('click', () => {
+    isSpeakingEnabled = !isSpeakingEnabled;
+
+    // Update the icon based on state
+    if (isSpeakingEnabled) {
+      speakIcon.classList.remove('fa-volume-xmark');
+      speakIcon.classList.add('fa-volume-up');
+      speakButton.title = "Voice is ON";
+    } else {
+      speakIcon.classList.remove('fa-volume-up');
+      speakIcon.classList.add('fa-volume-xmark');
+      speakButton.title = "Voice is OFF";
+    }
+  });
+  
+    // Speak function (respects toggle)
+    function speak(text) {
+      if (!isSpeakingEnabled) return;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US'; // Adjust as needed
+      window.speechSynthesis.speak(utterance);
+    }
+  
+    // Send user message to Flask endpoint
+    chatSend.addEventListener('click', () => {
+      const message = chatInput.value.trim();
+      if (message) {
+        fetch('/chatwithAssistant', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+          chatBubble.textContent = data.reply;
+          chatInput.value = '';
+  
+          // Speak the assistant reply if voice is ON
+          speak(data.reply);
+  
+          // Handle redirect if present
+          if ('redirect' in data && data.redirect) {
+            setTimeout(() => {
+              window.location.href = data.redirect;
+            }, 1500);
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          chatBubble.textContent = "Oops! Something went wrong.";
+        });
+      }
+    });
+  
+    // Handle Enter key press to send message
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        chatSend.click();
+      }
+    });
+
+// Check browser support
+
+
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  // Mic button click: start recognition
+  micButton.addEventListener('click', () => {
+    recognition.start();
+    micButton.classList.add('listening');  // Add visual effect
+  });
+
+  // On result: insert text and stop listening
+  recognition.onresult = function(event) {
+  let transcript = event.results[0][0].transcript.toLowerCase().trim();
+  console.log('Result:', transcript);
+
+  // Check if 'send' is at the end
+  if (transcript.endsWith('send')) {
+    // Remove 'send' from input text
+    transcript = transcript.replace(/\s*send$/, '').trim();
+    chatInput.value = transcript;
+    chatSend.click();
+  } else {
+    chatInput.value = transcript;
+  }
+
+  micButton.classList.remove('listening');
+};
+
+  
+  // On end: remove effect
+  recognition.onend = function() {
+    micButton.classList.remove('listening');
+  };
+
+  // On error: remove effect
+  recognition.onerror = function(event) {
+    console.error('Speech recognition error:', event.error);
+    micButton.classList.remove('listening');
+  };
+
+} else {
+  micButton.style.display = 'none';
+  console.warn('Speech recognition not supported in this browser.');
+  //alert('Speech recognition is not supported in Firefox. Please use Chrome or Edge.');
+}
+
+
+  </script>
+    
+  
+     
+</body>
+</html>

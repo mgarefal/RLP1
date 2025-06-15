@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _('Remote Lab Embedded Test') }}
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row my-3 p-3 bg-body rounded shadow-sm">
+    <h1 class="text-center mb-4"><i class="fa-solid fa-flask"></i> {{ _('Test Lab') }}</h1>
+    <h2 class="text-center mb-4"><i class="fa-solid fa-eye"></i> {{ _('Live View') }}</h2>
+    {% for camera in cameras %}
+    <div class="col-md-6">
+      <iframe src="{{ camera }}" width="100%" height="600" frameborder="0"></iframe>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- Loading Spinner (Hidden Initially) -->
+<div id="loading-spinner" style="display: none; text-align: center; margin-top: 20px;">
+  <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2">Compiling and Uploading, please wait...</p>
+</div>
+
+  <div class="row my-3 p-3 bg-body rounded shadow-sm">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4"><i class="fa-solid fa-gauge-high"></i> {{ _('Actuators') }}</h2>
+      <div class="d-flex justify-content-center align-items-left flex-column">
+        {% for actuator in actuators %}
+        <div class="form-check form-switch mx-3 mb-3">
+          <input type="checkbox" id="checkbox{{ loop.index }}" class="toggle_class" name="checkbox{{ loop.index }}" value="">
+          <label class="form-check-label" for="checkbox{{ loop.index }}">{{ actuator }}</label>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="d-flex align-items-left">
+        <input class="mx-5" type="range" id="slider" name="slider" min="1" max="10" step="1" value="0">
+        <label class="form-check-label text-center mt-2 mb-4" for="slider">{{ _('Potentiometer') }}</label>
+      </div>
+    </div>
+    
+    <div class="col-md-6 mt-5 mt-md-0">
+      <h2 class="text-center mb-4"><i class="fa-solid fa-file-code"></i> {{ _('Sketches') }}</h2>
+      <form id="sketchForm" method="POST" action="{{ url_for('remote_lab1_test') }}">
+        <div class="mb-3">
+          <label for="sketchSelect" class="form-label">{{ _('Select Sketch:') }}</label>
+          <select class="form-select" id="sketchSelect" name="sketchSelect">
+            <option value="">{{ _('Select a sketch') }}</option>
+            {% for sketch in sketches %}
+            <option value="{{ sketch.id }}">{{ sketch.article_title }}</option>
+            {% endfor %}
+          </select>
+          <button type="button" class="btn btn-primary mt-2" id="createNewSketchButton"><i class="fa-solid fa-circle-plus"></i> {{ _('Create New Sketch') }}</button>
+        </div>
+        <div id="sketchEditor" style="display: none;">
+          <div class="mb-3">
+            <label for="sketchTitle" class="form-label">{{ _('Title:') }}</label>
+            <input type="text" class="form-control" id="sketchTitle" name="article_title">
+          </div>
+          <div class="mb-3">
+            <label for="sketchBody" class="form-label">{{ _('Body:') }}</label>
+            <textarea class="form-control" id="sketchBody" name="article_body" rows="10">void setup() {\n  // put your setup code here, to run once:\n}\n\nvoid loop() {\n  // put your main code here, to run repeatedly:\n}</textarea>
+          </div>
+          <input type="hidden" id="sketchId" name="sketchId">
+          <button type="submit" class="btn btn-success" id="saveSketchButton"><i class="fa-solid fa-circle-check"></i>{{ _('Save') }}</button>
+          <button type="button" class="btn btn-danger ml-2" id="cancelEditButton"><i class="fa-solid fa-ban"></i> {{ _('Cancel') }}</button>
+          <button type="button" class="btn btn-info ml-2" id="compileUploadButton" style="display: none;"><i class="fa-solid fa-gears"></i> {{ _('Compile & Upload') }}</button>
+        </div>
+      </form>
+
+      <div class="mb-3 text-center">
+        <label for="serialDataInput" class="form-label">{{ _('Send Data to Arduino:') }}</label>
+        <input type="text" id="serialDataInput" class="form-control" placeholder="{{ _('Type your message here...') }}">
+        <button type="button" class="btn btn-primary mt-2" id="sendDataButton"><i class="fa-solid fa-paper-plane"></i> {{ _('Send') }}</button>
+      </div>
+
+      <div class="mb-3 text-center">
+        <label for="serialDataHistory" class="form-label">{{ _('Serial Data History:') }}</label>
+        <textarea id="serialDataHistory" class="form-control" rows="10" readonly style="resize: none;"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const sketchSelect = document.getElementById('sketchSelect');
+    const createNewSketchButton = document.getElementById('createNewSketchButton');
+    const sketchEditor = document.getElementById('sketchEditor');
+    const sketchForm = document.getElementById('sketchForm');
+    const sketchTitle = document.getElementById('sketchTitle');
+    const sketchBody = document.getElementById('sketchBody');
+    const sketchId = document.getElementById('sketchId');
+    const saveSketchButton = document.getElementById('saveSketchButton');
+    const cancelEditButton = document.getElementById('cancelEditButton');
+    const compileUploadButton = document.getElementById('compileUploadButton');
+    const serialDataInput = document.getElementById('serialDataInput');
+    const sendDataButton = document.getElementById('sendDataButton');
+    const serialDataHistoryDisplay = document.getElementById('serialDataHistory');
+    const loadingSpinner = document.getElementById('loading-spinner');
+
+    const serialDataHistory = [];    
+    const MAX_HISTORY_LENGTH = 100;
+    let serialPortInUse = false;
+
+    // Function to update checkbox states
+    function updateCheckboxStates() {
+      $.get('/checkbox-states', function(response) {
+        for (var checkboxId in response) {
+          var checkboxState = response[checkboxId];
+          $('#' + checkboxId).prop('checked', checkboxState);
+        }
+      }).fail(function() {
+        console.error('Failed to fetch checkbox states from server.');
+      });
+    }
+
+    // Update checkbox states on page load
+    updateCheckboxStates();
+
+    // Handle checkbox state change
+    $('input[type="checkbox"]').change(function() {
+      var checkboxId = $(this).attr('id');
+      var checkboxState = $(this).is(':checked');
+      
+      // Debug log to verify checkbox interactions
+      console.log('Checkbox change detected:', checkboxId, checkboxState);
+
+      // Make AJAX request depending on checkbox state
+      var checkboxUrl = '/checkbox/' + checkboxId + (checkboxState ? '/on' : '/off');
+      $.get(checkboxUrl)
+        .done(function() {
+          console.log('Checkbox state sent successfully:', checkboxState);
+        })
+        .fail(function() {
+          console.error('Failed to update checkbox state on server.');
+        });
+    });
+
+    // Slider input change event
+    $('#slider').on('input', function() {
+      var sliderValue = $(this).val();
+      $.get('/slider/' + sliderValue + '/')
+        .done(function() {
+          console.log('Slider value sent successfully:', sliderValue);
+        })
+        .fail(function() {
+          console.error('Failed to update slider value on server.');
+        });
+    });
+
+    // Fetch slider value on page load
+    function updateSliderValue() {
+      $.get('/get-slider-value', function(response) {
+        var sliderValue = response.pot1;
+        var minSliderValue = $('#slider').attr('min');
+        var maxSliderValue = $('#slider').attr('max');
+        
+        sliderValue = Math.min(Math.max(sliderValue, minSliderValue), maxSliderValue);
+        $('#slider').val(sliderValue);
+      }).fail(function() {
+        console.error('Failed to fetch slider value from server.');
+      });
+    }
+    updateSliderValue();
+
+    // Fetch and update serial data every 2 seconds
+    function fetchSerialData() {
+    if (serialPortInUse) {
+        console.log('Serial port is busy, skipping fetch.');
+        return; // Skip fetching serial data if the serial port is in use
+    }
+
+    $.get('/serial-data', function(data) {
+        const newSerialData = data.serial.trim();
+        if (newSerialData) {
+            serialDataHistory.push(newSerialData);
+            if (serialDataHistory.length > MAX_HISTORY_LENGTH) {
+                serialDataHistory.shift();
+            }
+            $('#serialDataHistory').html(serialDataHistory.join('<br>'));
+        }
+    }).fail(function() {
+        console.error('Error fetching serial data.');
+    });
+}
+    
+    setInterval(fetchSerialData, 2000);
+
+    
+    // Function to send data to the Arduino
+    sendDataButton.addEventListener('click', function () {
+      const dataToSend = serialDataInput.value.trim();
+
+      if (dataToSend === "") {
+        alert("Please enter some text to send.");
+        return;
+      }
+
+      fetch('/send-to-arduino', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: dataToSend })
+      })
+      .then(response => {
+        if (response.ok) {
+          // Clear the input field
+          serialDataInput.value = "";
+
+          // Add a success message to serial history
+          const successMessage = `Sent to Arduino: ${dataToSend}`;
+          serialDataHistory.push(successMessage);
+
+          // Limit the history size
+          if (serialDataHistory.length > MAX_HISTORY_LENGTH) {
+            serialDataHistory.shift();
+          }
+
+          // Update the display with the new message
+          serialDataHistoryDisplay.innerHTML = serialDataHistory.join('<br>');
+        } else {
+          alert("Error sending data.");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("An error occurred while sending data.");
+      });
+    });
+
+     // Sketch selection event listener
+     sketchSelect.addEventListener('change', function () {
+      if (this.value) {
+        fetch(`/get_sketch_codes`)
+          .then(response => response.json())
+          .then(data => {
+            sketchTitle.value = data[this.value].title;
+            sketchBody.value = data[this.value].body;
+            sketchId.value = this.value;
+            sketchEditor.style.display = 'block';
+            saveSketchButton.textContent = "{{ _('Save Changes') }}";
+            compileUploadButton.style.display = 'inline-block';
+          });
+      } else {
+        sketchTitle.value = '';
+        sketchBody.value = 'void setup() {\n  // put your setup code here, to run once:\n}\n\nvoid loop() {\n  // put your main code here, to run repeatedly:\n}';
+        sketchId.value = '';
+        sketchEditor.style.display = 'none';
+        compileUploadButton.style.display = 'none';
+      }
+    });
+
+    // Create new sketch event listener
+    createNewSketchButton.addEventListener('click', function () {
+      sketchTitle.value = '';
+      sketchBody.value = 'void setup() {\n  // put your setup code here, to run once:\n}\n\nvoid loop() {\n  // put your main code here, to run repeatedly:\n}';
+      sketchId.value = '';
+      sketchEditor.style.display = 'block';
+      saveSketchButton.textContent = "{{ _('Save New Sketch') }}";
+      compileUploadButton.style.display = 'none';
+    });
+
+    // Cancel edit event listener
+    cancelEditButton.addEventListener('click', function () {
+      sketchEditor.style.display = 'none';
+      sketchSelect.value = '';
+    });
+
+    // Event listener for the Compile & Upload button
+    compileUploadButton.addEventListener('click', function () {
+    // Confirm the action
+    if (!confirm("Are you sure you want to compile and upload this sketch?")) {
+        return; // Exit if the user cancels
+    }
+
+    // Prepare data for the compile and upload
+    serialPortInUse = true;
+    loadingSpinner.style.display = 'block';
+    compileUploadButton.disabled = true;
+
+    const sketchData = {
+        id: document.getElementById('sketchId').value,
+        title: document.getElementById('sketchTitle').value,
+        body: document.getElementById('sketchBody').value
+    };
+
+    // Send POST request to compile and upload
+    fetch('/compile-upload2', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sketchData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        loadingSpinner.style.display = 'none';
+        compileUploadButton.disabled = false;
+        if (data.redirect_url) {
+            // Redirect to the provided URL to display flash messages
+            window.location.href = data.redirect_url;
+        } else {
+            console.error("No redirect URL provided.");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+});
+</script>
+{% endblock %}

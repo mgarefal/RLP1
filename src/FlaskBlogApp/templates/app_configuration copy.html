@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Ρυθμίσεις Εφαρμογής
+{% endblock title %}
+
+{% block content %}
+
+<h1>Ρυθμίσεις Εφαρμογής</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    
+    <p>
+        {{ form.active_activity.label }}<br>
+        {{ form.active_activity(class="form-control") }}
+        {% for error in form.active_activity.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.shadow_controller.label }}<br>
+        {{ form.shadow_controller(class="form-control") }}
+        {% for error in form.shadow_controller.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.activity_micro_acts.label }}<br>
+        {{ form.activity_micro_acts(class="form-control") }}
+        {% for error in form.activity_micro_acts.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.user_activities.label }}<br>
+        {{ form.user_activities(class="form-control") }}
+        {% for error in form.user_activities.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.booking_system.label }}<br>
+        {{ form.booking_system(class="form-control") }}
+        {% for error in form.booking_system.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.timer_minutes.label }}<br>
+        {{ form.timer_minutes(class="form-control") }}
+        {% for error in form.timer_minutes.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.debug_level.label }}<br>
+        {{ form.debug_level(class="form-control") }}
+        {% for error in form.debug_level.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.usex_api.label }}<br>
+        {{ form.usex_api(class="form-control") }}
+        {% for error in form.usex_api.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.use_ai.label }}<br>
+        {{ form.use_ai(class="form-control") }}
+        {% for error in form.use_ai.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.application_language.label }}<br>
+        {{ form.application_language(class="form-control") }}
+        {% for error in form.application_language.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <!-- New 'board' field -->
+    <p>
+        {{ form.board.label }}<br>
+        {{ form.board(class="form-control") }}
+        {% for error in form.board.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <p>{{ form.submit(class="btn btn-primary") }}</p>
+        
+{% endblock content %}

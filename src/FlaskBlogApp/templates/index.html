@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  {{ _('Page Title') }}
+{% endblock title %}
+
+
+{% block content %}
+
+        
+        <div class="row my-3 p-3 bg-body rounded shadow-sm" >    
+          <div class="col col-md-12">
+            <div align="center" >
+              <img src="{{ url_for('static', filename='images/hmu_logo.png') }}" alt="" class="img-responsive a_image" > 
+              &nbsp;
+              <h1>Remote Lab 1 </h1>
+              <h2>{{ _('Welcome message') }}</h2>
+            </div>
+            <div align="center" >
+              <h3>{{ _('department_message') }}</h3>              
+            </div>                                  
+          </div>
+        </div>        
+        
+{% endblock content %}

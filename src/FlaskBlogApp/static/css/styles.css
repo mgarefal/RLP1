@@ -1,0 +1,339 @@
+body {
+	background-color: #f8f9fa;
+}
+
+.container{
+	margin-top: 20px;
+}
+
+/* JUMBOTRON STYLES */
+
+.jumbotron {
+	color: white;
+    background-image: url('../images/jumbotron_notext.png');
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+	display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 90px; 
+    height: auto;
+    float: left; 
+	margin: 25px;
+}
+
+.title {
+    text-align: left;
+}
+
+.title h1 {
+    font-weight: bold; 
+    margin-bottom: 5px; 
+}
+
+.title h2 {
+    margin-top: 0; 
+}
+
+/* JUMBOTRON STYLES ENDS */
+
+
+.main-article-title{
+	font-size: 2em;
+	font-weight: bold;
+	text-decoration: none;
+	color:  black;
+}
+
+.article_date,.article_date:hover{
+	font-size: 1em;
+	color:  black;
+}
+
+.main-article-partial-text,.main-article-full-text{
+	font-size: 1.5em;
+	margin-top: 20px;
+}
+
+.main-article-category{
+	color: rgba(0, 0, 0, 0.4);
+}
+
+.author-name:link{
+	color: gray;
+}
+
+.author-name:visited{
+	color: #696969;
+}
+
+.author-name:hover{
+	color: #D3D3D3;
+}
+
+.article_title:link, .article_title:hover, .article_title:visited{
+	text-decoration: none;
+	color:  black;
+}
+
+.main-article-category:hover,.main-article-title:hover,.author-name{
+	text-decoration: underline;
+	color:  black;
+}
+
+footer{
+	color: #fff;
+	background-color: #343a40;
+}
+
+.litems,.mlink{
+	text-decoration: none;
+	/*color: #f8f9fa;*/
+	color: rgba(255,255,255,.90)!important;
+	
+}
+.litems:hover{
+	/*color: white;*/
+	color: rgba(255,255,255,10)!important;
+}
+
+.row{
+	margin-top: 20px;
+}
+
+.navbar-profile-image{
+	width: 50px;
+	height: 50px;
+}
+
+.profile-image{
+	width: 60px;
+	height: 60px;
+	margin: 10px;
+}
+
+.a_image{
+	width: 250px;
+}
+
+.aba_header{
+	text-align: center;
+}
+
+.error_message{
+    font-size: 3em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    color:  red;
+}
+
+.error_image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.activity_div{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #333;
+	color: white;
+	text-align: center;
+	padding: 10px 0;
+}
+.countdown-timer {
+    font-size: 22px;
+	color: white; 
+}
+.img-responsive {
+	max-width: 100%;
+	height: auto;
+  }
+
+  .toggle-switch {
+	display: inline-block;
+	width: 70px;
+	height: 46px;
+	position: relative;
+  }
+  
+  .toggle-switch input[type="checkbox"] {
+	display: none;
+  }
+  
+  .slider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	border-radius: 34px;
+	transition: 0.4s;
+	cursor: pointer;
+	width: 100px;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 20px;
+	width: 20px;
+	left: 3px;
+	bottom: 3px;
+	background-color: white;
+	border-radius: 50%;
+	transition: 0.4s;
+  }
+
+  #slider {
+	margin-left: 3em !important;
+    margin-right: 1em !important;
+  }
+  
+  .toggle-switch input[type="checkbox"]:checked + .slider {
+	background-color: #008cff;
+  }
+  
+  .toggle-switch input[type="checkbox"]:checked + .slider:before {
+	transform: translateX(24px);
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporción 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container object,
+.video-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.form-check-input, .form-check-label{
+	font-size: 25px;
+}
+
+.on {
+    background-image: url('../images/ON.png'); 
+}
+
+.off {
+    background-image: url('../images/OFF.png');
+
+}
+
+.toggle_class {
+	background-color: unset;
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+    background-position: center; 
+    border: unset; 
+    cursor: pointer;
+	user-select: none;
+	width: 75px;
+	height: 45px;
+	margin-right: 10px;
+	transition: 0.2s;
+}
+
+/* Custom checkbox styling with a light blue background, white check mark, and scaling effect */
+.custom-checkbox {
+	/* Remove default checkbox appearance */
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+  
+	/* Set custom size, border, and background for the checkbox */
+	width: 24px;
+	height: 24px;
+	border: 2px solid lightblue;
+	background-color: white;
+	border-radius: 4px;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	transform: scale(1); /* Initial scale */
+  }
+  
+  /* Hover effect for scaling up */
+  .custom-checkbox:hover {
+	transform: scale(1.1); /* Slightly larger on hover */
+  }
+  
+  /* Checked state styling with scaling */
+  .custom-checkbox:checked {
+	background-color: lightblue;
+	border-color: lightblue;
+	transform: scale(1.1); /* Slightly larger when checked */
+  }
+  
+  /* Add the white check mark on the checked state */
+  .custom-checkbox:checked::before {
+	content: '✔';
+	position: absolute;
+	top: -2px; /* Adjust for centering vertically */
+	left: 2px; /* Adjust for centering horizontally */
+	font-size: 18px; /* Size of the check mark */
+	color: white; /* Color of the check mark */
+	font-weight: bold;
+  }
+  
+
+#codeTextArea {
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar-brand {
+	border-color: #888888;
+    border-style: solid;
+    border-radius: 8px;
+    padding: 8px;
+	transition: 0.2s;
+}
+
+.navbar-brand:hover {
+	color: white!important;
+	border-color: white!important;
+	transition: 0.2s;
+}
+
+.navbar-brand:active {
+	color: #616161!important;
+	border-color: #616161!important;
+}
+
+.container_NodeRED {
+    width: 95%; /* Adjusts width dynamically, can increase as needed */
+    max-width: 1200px; /* Optional: Adds a maximum width for better layout control */
+    margin: 0 auto; /* Centers the container horizontally */
+    padding: 20px 0; /* Adds vertical spacing around the container */
+    background-color: #f9f9f9; /* Optional: Light background for emphasis */
+    border: 1px solid #ddd; /* Optional: Subtle border for definition */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+}
+
+.container_NodeRED h1 {
+    text-align: center; /* Centers the header text */
+    font-size: 24px; /* Adjust header font size */
+    color: #333; /* Optional: Dark text color */
+    margin-bottom: 20px; /* Adds space below the header */
+}
+
+.container_NodeRED iframe {
+    border: none; /* Removes the default border */
+    width: 100%; /* Ensures iframe takes the full width of the container */
+    height: 800px; /* Adjust height as needed */
+    border-radius: 6px; /* Matches container's rounded corners (optional) */
+}

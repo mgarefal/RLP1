@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Ενεργές Συνεδρίες
+{% endblock title %}
+
+
+{% block content %}
+
+<main role="main" class="container"></main>
+
+    <h2 class="aba_header">
+      Ενεργές Συνεδρίες       
+    </h2>
+    <hr>
+
+{% if workingSessions %}
+    {% for WS in workingSessions.items %}        
+        <div class="row my-3 p-3 bg-body rounded shadow-sm">
+          <div class="col col-md-12">
+            {{ WS.email }}
+             | 
+            {{ WS.date_created.strftime('%d-%m-%Y %H:%M:%S') }}
+             | 
+            {{ WS.workingStatus }}
+          </div>                    
+        </div>
+
+        <hr>        
+    {% endfor %}
+{% endif %}  
+  <div>
+    <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Διαγραφή</button>
+  </div>        
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Διαγραφή Ενεργών Συνεδριών</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Είστε σίγουρος/η ότι θέλετε να διαγράψετε τις ενεργές συνεδρίες;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Όχι</button>
+        <form action="{{ url_for('clear_workingSessions') }}" method="POST">
+            <input type="submit" class="btn btn-danger" value="Διαγραφή Ενεργών Συνεδριών">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+

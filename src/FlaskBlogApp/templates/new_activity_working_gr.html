@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Νέα Δραστηριότητα
+{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="container login-container">
+  <div class="row">
+    <div class="col-md-6 login-form-1">
+        <h3>{{ page_title }}</h3>
+
+        <form method="POST" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+
+          <div class="mb-3">
+            {{ form.activity_title.label(class="form-label") }}
+            {{ form.activity_title(class="form-control", required=False) }}
+            <div id="activity_titleHelp" class="form-text">Παρακαλώ εισάγετε τον τίτλο της δραστηριότητας.</div>
+            {% if form.activity_title.errors %}
+              <ul class=errors>
+              {% for error in form.activity_title.errors %}
+                <li class="alert text-danger">{{ error }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+
+
+          <div class="mb-3">
+            {{ form.activity_body.label(class="form-label") }}
+            {{ form.activity_body(class="form-control", rows="5", required=False) }}
+            <div id="activity_bodyHelp" class="form-text">Παρακαλώ εισάγετε το πλήρες κείμενο της δραστηριότητας.</div>
+            {% if form.activity_body.errors %}
+              <ul class=errors>
+              {% for error in form.activity_body.errors %}
+                <li class="alert text-danger">{{ error }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            {{ form.activity_ctrl_sketch.label(class="form-label") }}
+            {{ form.activity_ctrl_sketch(class="form-control", rows="5", required=False) }}
+            <div id="activity_bodyHelp" class="form-text">Παρακαλώ εισάγετε το σχέδιο ελέγχου δραστηριότητας. Εάν δεν χρειάζεται σχέδιο ελέγχου γράψτε 'NOTHING'.</div>
+            {% if form.activity_body.errors %}
+              <ul class=errors>
+              {% for error in form.activity_ctrl_sketch.errors %}
+                <li class="alert text-danger">{{ error }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            {{ form.activity_ml_model.label(class="form-label") }}
+            {{ form.activity_ml_model(class="form-control", rows="5") }}
+            <div id="activity_ml_modelHelp" class="form-text">Παρακαλώ εισάγετε το μοντέλο Machine Learning (προαιρετικό).</div>
+            {% if form.activity_ml_model.errors %}
+              <ul class=errors>
+                {% for error in form.activity_ml_model.errors %}
+                  <li class="alert text-danger">{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          
+              <div class="mb-3">
+                {{ form.activity_image.label(class="form-label") }}
+                {{ form.activity_image(class="form-control") }}
+                <div id="activity_imageHelp" class="form-text">Παρακαλώ δώστε μία εικόνα για τη δραστηριότητά σας.</div>
+                    {% if form.activity_image.errors %}
+                    <ul class=errors>
+                    {% for error in form.activity_image.errors %}
+                      <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+              </div>
+
+              <div class="mb-3">
+                {{ form.activity_microacts.label(class="form-label") }}
+                {{ form.activity_microacts(class="form-control") }}
+                <div id="ActivitiesPath" class="form-text">Για τη δημιουργία μικροδραστηριοτήτων χρησιμοποιήστε το εργαλείο παρακάτω.</div>
+                    {% if form.activity_microacts.errors %}
+                    <ul class=errors>
+                    {% for error in form.activity_microacts.errors %}
+                      <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+              </div>
+
+
+
+              <div class="mb-3">
+                Διάλεξε μικροδραστηριότητα
+                <SELECT id="list1" name="microActivity" multiple="multiple">
+                  {% for m in microActivities %}
+                    <OPTION value={{m.name}}>{{m.name}}</option>
+                  {% endfor %}
+                </SELECT>
+                <input type="button" id="but1" value="Add Micro Activity"/>
+                <input type="button" id="but2" value="Clear"/>
+                <input type="button" id="but3" value="Create Microactivities Path"/>                
+              </div>
+
+          <div class="mb-3">
+              {{ form.submit(class="btn btn-primary") }}
+              <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('activities_active') }}">Ακύρωση</a>
+          </div>
+        </form>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+        
+    $(function()
+    {
+        $("#but1").click(function()
+        {
+            var str="";
+            var x = document.getElementById("activity_microacts").value;
+            $("#list1 option:selected").each(function()
+            {
+              str += $(this).text() +"|";
+              
+            });
+            str=x+str;
+            $("#activity_microacts").val(str); 
+        });
+        $("#but2").click(function()
+        {
+          $("#activity_microacts").val("");
+        });
+        $("#but3").click(function(){
+          var str = "";
+          $("#list2 option:selected").each(function() {
+          str += $(this).text() + "|"; //concat it, do not replace, note the +=
+          });
+          //alert(str);
+          var str = document.getElementById("activity_microacts").value;
+          str=str.slice(0,-1);
+          //$("#microActivitiesPath").val(str);
+          $("#activity_microacts").val(str);  //replace the value
+          });
+    });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Remote Lab Embedded
+{% endblock title %}
+
+
+{% block content %} 
+      <div class="row my-3 p-3 bg-body rounded shadow-sm">
+        <div class="col-sm-6 col-md-6">                  
+          <object data="http://192.168.1.3:8554"
+          	width="800"
+          	height="600">
+          </object>
+          <a href="http://garefalakis.hopto.org:8554" target="_blank">Open video in new tab</a>
+        </div>
+        <div class="row my-3 p-3 bg-body rounded shadow-sm">
+          <div class="col-sm-5 col-md-6">        
+            <object data="http://192.168.1.4:8555"
+              width="600"
+              height="600">
+            </object>  
+          </div>
+        </div>  
+        <div class="col-sm-4 offset-sm-1 col-md-4 offset-md-1">
+          <div class='media-left'>
+
+            
+            <h2>Actuators</h2>
+            <form id="myForm">
+              <label for="checkbox1">Yellow Button:</label>
+              <input type="checkbox" id="checkbox1" name="checkbox1"><br>
+          
+              <label for="checkbox2">Red Button:</label>
+              <input type="checkbox" id="checkbox2" name="checkbox2"><br>
+
+              <label for="checkbox3">Heater:</label>
+              <input type="checkbox" id="checkbox3" name="checkbox3"><br>
+          
+              <label for="checkbox4">Fan:</label>
+              <input type="checkbox" id="checkbox4" name="checkbox4"><br>
+
+              <label for="checkbox5">Light:</label>
+              <input type="checkbox" id="checkbox5" name="checkbox5"><br>
+            <!--
+              <label for="checkbox6">Checkbox 6:</label>
+              <input type="checkbox" id="checkbox6" name="checkbox6"><br>
+
+              <label for="checkbox7">Checkbox 7:</label>
+              <input type="checkbox" id="checkbox7" name="checkbox7"><br>
+          
+              <label for="checkbox8">Checkbox 8:</label>
+              <input type="checkbox" id="checkbox8" name="checkbox8"><br>
+            -->  
+            <br>
+            <br>
+              
+              
+              <h2>Potentiometer</h2>
+              <input type="range" id="slider" name="slider" min="1" max="10" step="1" value="0">
+            </form>
+
+        
+            
+            <script>
+
+            function updateCheckboxStates() {
+              $.get('/checkbox-states', function(response) {
+                // Iterate through the response and update the checkbox states
+                for (var checkboxId in response) {
+                  var checkboxState = response[checkboxId];
+                  $('#' + checkboxId).prop('checked', checkboxState);
+                }
+              });
+            }
+        
+            
+
+            function updateSliderValue() {
+                $.get('/get-slider-value', function(response) {
+                  var sliderValue = response.pot1;
+                  var minSliderValue = $('#slider').attr('min');  // Get the minimum value of the slider
+                  var maxSliderValue = $('#slider').attr('max');  // Get the maximum value of the slider
+                  
+                  // Ensure the sliderValue is within the range of the slider
+                  sliderValue = Math.min(Math.max(sliderValue, minSliderValue), maxSliderValue);
+
+                  $('#slider').val(sliderValue);  // Update the slider value
+                }).fail(function(xhr, status, error) {
+                  console.log(error);  // Log any errors to the console
+                });
+              }
+
+
+            // Update the slider value when the page loads
+            updateSliderValue();
+            // Update the checkbox states when the page loads
+            updateCheckboxStates();
+
+
+              $(document).ready(function() {
+                $('#myForm input[type="checkbox"]').change(function() {
+                  var checkboxId = $(this).attr('id');
+                  var checkboxState = $(this).is(':checked');
+          
+                  if (checkboxState) {
+                    $.get('/checkbox/' + checkboxId + '/on');
+                  } else {
+                    $.get('/checkbox/' + checkboxId + '/off');
+                  }
+                });
+          
+                $('#slider').on('input', function() {
+                  var sliderValue = $(this).val();
+                  $.get('/slider/' + sliderValue +'/');
+                });
+              });
+            </script>
+          
+          
+          </div>
+        </div>
+      </div>
+      <div class="row my-3 p-3 bg-body rounded shadow-sm">
+        
+      </div>
+      <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+          
+      </div>
+    </div>
+          
+
+{% endblock content %}
+
+

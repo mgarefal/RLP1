@@ -1,0 +1,447 @@
+# Traductions en français pour PROJECT.
+# Copyright (C) 2024 ORGANISATION
+# Ce fichier est distribué sous la même licence que le projet PROJECT.
+# PREMIER AUTEUR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-27 18:30+0300\n"
+"PO-Revision-Date: 2024-05-27 18:31+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+# ==========================
+# INDEX
+# ==========================
+
+msgid "Welcome message"
+msgstr "Bienvenue à l'Université méditerranéenne hellénique"
+
+msgid "Page Title"
+msgstr "HMU - Université méditerranéenne hellénique"
+
+msgid "department_message"
+msgstr "Laboratoire de microélectronique et d'Internet des objets"
+
+# ==========================
+# NAVBAR
+# ==========================
+
+msgid "Remote Labs"
+msgstr "Laboratoires à distance"
+
+msgid "Remote Lab (Node-red)"
+msgstr "Laboratoire à distance (Node-red)"
+
+msgid "Remote Lab (external)"
+msgstr "Laboratoire à distance (externe)"
+
+msgid "Remote Lab 1 (embedded)"
+msgstr "Laboratoire à distance 1 (intégré)"
+
+msgid "Remote Lab 1 (Test)"
+msgstr "Laboratoire à distance 1 (Test)"
+
+msgid "Remote Lab 1 Monitor"
+msgstr "Moniteur du laboratoire à distance 1"
+
+msgid "Home Page Button"
+msgstr "Page d'accueil"
+
+msgid "Bookings"
+msgstr "Réservations"
+
+msgid "All Bookings"
+msgstr "Toutes les réservations"
+
+msgid "My Bookings"
+msgstr "Mes réservations"
+
+msgid "New Booking"
+msgstr "Nouvelle réservation"
+
+msgid "Article Button"
+msgstr "Croquis"
+
+msgid "My Sketches"
+msgstr "Mes croquis"
+
+msgid "New Sketch"
+msgstr "Nouveau croquis"
+
+msgid "Activities"
+msgstr "Activités"
+
+msgid "User Activities"
+msgstr "Activités de l'utilisateur"
+
+msgid "New Activity"
+msgstr "Nouvelle activité"
+
+msgid "Activity Status"
+msgstr "Statut de l'activité"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "English"
+msgstr "Anglais"
+
+msgid "Ελληνικά"
+msgstr "Grec"
+
+msgid "System Management"
+msgstr "Gestion du système"
+
+msgid "Connected Users"
+msgstr "Utilisateurs connectés"
+
+msgid "Application Settings"
+msgstr "Paramètres de l'application"
+
+msgid "User Group Settings"
+msgstr "Paramètres de groupe d'utilisateurs"
+
+msgid "Booking Management"
+msgstr "Gestion des réservations"
+
+msgid "Microactivities"
+msgstr "Microactivités"
+
+msgid "Machine Learning Check"
+msgstr "Vérification d'apprentissage automatique"
+
+msgid "Report Shadow Microcontroller"
+msgstr "Rapport du microcontrôleur fantôme"
+
+msgid "Show Serial Shadow Microcontroller"
+msgstr "Afficher le microcontrôleur série fantôme"
+
+msgid "Show I2C Shadow Microcontroller"
+msgstr "Afficher le microcontrôleur I2C fantôme"
+
+msgid "Show I2C Shadow All Pins"
+msgstr "Afficher tous les broches du microcontrôleur I2C fantôme"
+
+msgid "Logout"
+msgstr "Déconnexion"
+
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+msgid "Log In"
+msgstr "Se connecter"
+
+msgid "Time Expired"
+msgstr "Temps écoulé"
+
+# ==========================
+# TEST LAB 1
+# ==========================
+
+msgid "Remote Lab Embedded Test"
+msgstr "Test du laboratoire à distance intégré"
+
+msgid "Test Lab"
+msgstr "Laboratoire de test"
+
+msgid "Live View"
+msgstr "Vue en direct"
+
+msgid "Actuators"
+msgstr "Actionneurs"
+
+msgid "Potentiometer"
+msgstr "Potentiomètre"
+
+msgid "Sketches"
+msgstr "Croquis"
+
+msgid "Select Activity:"
+msgstr "Sélectionner une activité :"
+
+msgid "Select an activity"
+msgstr "Sélectionner une activité"
+
+msgid "Code:"
+msgstr "Code :"
+
+msgid "Select an activity from above"
+msgstr "Sélectionner une activité ci-dessus"
+
+msgid "Compile"
+msgstr "Compiler"
+
+msgid "Upload Code"
+msgstr "Télécharger le code"
+
+# ==========================
+# PAGE DE CONNEXION
+# ==========================
+
+msgid "Login title"
+msgstr "Connexion"
+
+msgid "Login body"
+msgstr "Connexion"
+
+# ==========================
+# PAGE D'INSCRIPTION
+# ==========================
+
+msgid "Signup title"
+msgstr "Inscription"
+
+msgid "Signup body"
+msgstr "Inscription"
+
+msgid "Required email"
+msgstr "Veuillez saisir une adresse e-mail."
+
+msgid "Required username"
+msgstr "Veuillez saisir un nom d'utilisateur."
+
+msgid "Required password"
+msgstr "Veuillez saisir un mot de passe."
+
+msgid "Required password 2"
+msgstr "Veuillez ressaisir le mot de passe."
+
+msgid "Signup button"
+msgstr "S'inscrire"
+
+# ==========================
+# FORMS.PY
+# ==========================
+
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+msgid "This field can't be empty."
+msgstr "Ce champ ne peut pas être vide."
+
+msgid "This field must have 3 to 15 characters"
+msgstr "Ce champ doit contenir entre 3 et 15 caractères"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Please enter a valid email address"
+msgstr "Veuillez saisir une adresse e-mail valide"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Confirm Password"
+msgstr "Confirmer le mot de passe"
+
+msgid "Passwords must match"
+msgstr "Les mots de passe doivent correspondre"
+
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+msgid "Log In"
+msgstr "Se connecter"
+
+msgid "This email is already taken."
+msgstr "Cet e-mail est déjà utilisé."
+
+msgid "Remember me"
+msgstr "Se souvenir de moi"
+
+msgid "Title project without spaces"
+msgstr "Titre du projet sans espaces"
+
+msgid "Must be at least 5 characters long"
+msgstr "Doit contenir au moins 5 caractères"
+
+msgid "Activity Title "
+msgstr "Titre de l'activité"
+
+msgid "This field must have 3 to 50 characters"
+msgstr "Ce champ doit contenir entre 3 et 50 caractères"
+
+msgid "Activity Description"
+msgstr "Description de l'activité"
+
+msgid "This field must have 3 to 50 characters"
+msgstr "Ce champ doit contenir entre 3 et 50 caractères"
+
+msgid "Activity description must be at least 5 characters"
+msgstr "La description de l'activité doit contenir au moins 5 caractères"
+
+msgid "Shadow microcontroller sketch."
+msgstr "Croquis du microcontrôleur fantôme."
+
+msgid "Sketch characters are to few"
+msgstr "Il y a trop peu de caractères dans le croquis"
+
+msgid "Activitys' Image"
+msgstr "Image de l'activité"
+
+msgid "Microactivities path"
+msgstr "Chemin des microactivités"
+
+msgid "Microactivities path must be have at least 5 characters"
+msgstr "Le chemin des microactivités doit contenir au moins 5 caractères"
+
+msgid "Machine Learning Model"
+msgstr "Modèle d'apprentissage automatique"
+
+msgid "Mission"
+msgstr "Mission"
+
+msgid "Article image"
+msgstr "Image de l'article"
+
+msgid "Submit"
+msgstr "Soumettre"
+
+msgid "Image Profile"
+msgstr "Image de profil"
+
+msgid "send to"
+msgstr "envoyer à"
+
+msgid "This username already exists!"
+msgstr "Ce nom d'utilisateur existe déjà !"
+
+msgid "Storage"
+msgstr "Stockage"
+
+# ==========================
+# LOGIN/LOGOUT FOR ROUTES.PY
+# ==========================
+
+msgid "User_login_fail"
+msgstr "Échec de la connexion de l'utilisateur. Veuillez réessayer avec un e-mail/mot de passe correct."
+
+# ==========================
+# ERREUR 404 ET ERREUR 415
+# ==========================
+
+msgid "error_404"
+msgstr "Erreur 404 : Page non trouvée"
+
+# ==========================
+# PAGE D'ACTIVITÉ ACTIVE DE L'UTILISATEUR
+# ==========================
+
+msgid "Required user picture"
+msgstr "Veuillez fournir une image pour votre profil."
+
+msgid "Account update title"
+msgstr "Compte utilisateur"
+
+msgid "Account update body"
+msgstr "Formulaire de mise à jour du compte"
+
+# ==========================
+# ROUTES.PY
+# ==========================
+
+# ====== LOGIN FUNCTION
+msgid "The user with email: {email} has not logged in before."
+msgstr "L'utilisateur avec l'email : {email} ne s'est pas encore connecté."
+
+msgid "The user with email: {email} was successfully created."
+msgstr "L'utilisateur avec l'email : {email} a été créé avec succès."
+
+msgid "The user with email: {email} WAS NOT created in the lab."
+msgstr "L'utilisateur avec l'email : {email} N'A PAS été créé dans le laboratoire."
+
+msgid "not admin"
+msgstr "pas admin"
+
+msgid "You have logged in as Administrator."
+msgstr "Vous êtes connecté en tant qu'administrateur."
+
+msgid "Previous connection detected, without proper logout. Please log in again."
+msgstr "Connexion précédente détectée, sans déconnexion correcte. Veuillez vous reconnecter."
+
+msgid "Unable to set ActiveActivity"
+msgstr "Impossible de définir ActiveActivity"
+
+msgid "No activity parameter was sent. The first activity is being activated."
+msgstr "Aucun paramètre d'activité n'a été envoyé. La première activité est en train d'être activée."
+
+msgid "The requested activity was not found. The first activity is being activated."
+msgstr "L'activité demandée n'a pas été trouvée. La première activité est en train d'être activée."
+
+msgid "******LaunchId set to "
+msgstr "******LaunchId défini sur "
+
+msgid "Booking System activated."
+msgstr "Système de réservation activé."
+
+msgid "Timeslot is not free."
+msgstr "L'horodatage n'est pas libre."
+
+msgid "User with email: {email} logged into the lab successfully."
+msgstr "L'utilisateur avec l'email : {email} s'est connecté au laboratoire avec succès."
+
+msgid "The timeslot has been booked. You are logged in as the Lab Owner."
+msgstr "L'intervalle de temps a été réservé. Vous êtes connecté en tant que propriétaire du laboratoire."
+
+msgid "Previous connection detected, without proper logout. Please log in again."
+msgstr "Connexion précédente détectée, sans déconnexion correcte. Veuillez vous reconnecter."
+
+msgid "The timeslot is reserved by another user. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "L'intervalle de temps est réservé par un autre utilisateur. Vous êtes connecté en tant que spectateur. Certaines fonctions du laboratoire sont désactivées."
+
+msgid "This timeslot is available. You can book and log in again as the owner."
+msgstr "Cet intervalle de temps est disponible. Vous pouvez le réserver et vous connecter à nouveau en tant que propriétaire."
+
+msgid "There is no user using the lab. You are logged in as the Lab Owner."
+msgstr "Aucun utilisateur n'utilise le laboratoire. Vous êtes connecté en tant que propriétaire du laboratoire."
+
+msgid "test2"
+msgstr "test2"
+
+msgid "User logged out successfully."
+msgstr "Déconnexion réussie de l'utilisateur."
+
+msgid "The ActiveActivity was not saved."
+msgstr "L'ActiveActivity n'a pas été enregistrée."
+
+msgid "You have logged in as Administrator."
+msgstr "Vous vous êtes connecté en tant qu'administrateur."
+
+msgid "Previous connection detected, without proper logout. Please log in again."
+msgstr "Connexion précédente détectée, sans déconnexion correcte. Veuillez vous reconnecter."
+
+msgid "Unable to set ActiveActivity"
+msgstr "Impossible de définir ActiveActivity"
+
+msgid "User with email: {email} logged into the lab successfully."
+msgstr "L'utilisateur avec l'email : {email} s'est connecté au laboratoire avec succès."
+
+msgid "The timeslot has been booked. You are logged in as the Lab Owner."
+msgstr "L'heure de réservation a été prise. Vous êtes connecté en tant que propriétaire du laboratoire."
+
+msgid "The timeslot is reserved by another user. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "L'heure de réservation est prise par un autre utilisateur. Vous êtes connecté en tant que spectateur. Certaines fonctions du laboratoire sont désactivées."
+
+msgid "This timeslot is available. You can book and log in again as the owner."
+msgstr "Cet horaire est disponible. Vous pouvez réserver et vous connecter à nouveau en tant que propriétaire."
+
+msgid "There is no user using the lab. You are logged in as the Lab Owner."
+msgstr "Il n'y a aucun utilisateur utilisant le laboratoire. Vous êtes connecté en tant que propriétaire du laboratoire."
+
+msgid "There is already a user using the lab. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "Il y a déjà un utilisateur utilisant le laboratoire. Vous êtes connecté en tant que spectateur. Certaines fonctions du laboratoire sont désactivées."
+
+# ==========================
+# SKETCHES PAGE
+# ==========================
+msgid "Sketches by "
+msgstr "Croquis par "

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    ΕΛΜΕΠΑ - Ελληνικό Μεσογειακό Πανεπιστήμιο
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>All Bookings</h1>
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in all_bookings %}
+        <tr>
+          <td>{{ booking.id }}</td>
+          <td>{{ booking.date }}</td>
+          <td>{{ booking.start_time }}</td>
+          <td>{{ booking.end_time }}</td>
+          <td>
+            <input type="checkbox" name="selected_bookings" value="{{ booking.id }}">
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <button type="submit" class="btn btn-danger">Delete Selected Bookings</button>
+</form>
+ 
+    
+{% endblock content %}

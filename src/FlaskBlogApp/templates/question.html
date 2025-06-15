@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    ΕΛΜΕΠΑ - Ελληνικό Μεσογειακό Πανεπιστήμιο
+{% endblock title %}
+
+
+{% block content %}       
+        
+  <h1>Question:</h1>
+    <p>Η χρονοθυρίδα βρέθηκε ελεύθερη. Θέλετε να τη δεσμέυσετε για την υπόλοιπη ρα </p>
+
+    <script>
+        function handleResponse(response) {
+            if (response) {
+                // User clicked "Yes"
+                alert("Επιλέξατε δέσμευση χρονοθυρίδας. Σύνδεση ως αποκλειστικός χρήστης");
+                window.location.href = "/my_login_user/{{email}}/{{'owner'}}"; 
+            } else {
+                // User clicked "No"
+                alert("Δεν θέλετε δέσμευση χρονοθυρίδας. Σύνδεση ως θεατής");
+                window.location.href = "/my_login_user/{{email}}/{{'spectator'}}"; 
+            }
+        }
+
+        var confirmed = confirm("Θέλετε να δεσμέυσετε την χρονοθυρίδα  αποκλειστικό χρηστη;");
+        handleResponse(confirmed);
+    </script>
+
+{% endblock content %}

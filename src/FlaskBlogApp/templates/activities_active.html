@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Δραστηριότητες      
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+    <h2 class="aba_header">
+      Δραστηριότητες Εργαστηρίου
+    </h2>
+    <hr>
+
+{% if activities %}
+    {% for activity in activities.items %}
+
+        
+        <div class="row my-3 p-3 bg-body rounded shadow-sm">
+          <div class="col col-md-12">
+            {% if activity.activityimage and activity.activity_image != 'default_activity_image.jpg' %}
+              <img src="{{ url_for('static', filename='images/activities_images/'+activity.activity_image) }}" alt="" class="img-responsive a_image" width="640px" height="360px">
+            {% endif %}
+          </div>
+          <div class="col col-md-12">
+            <div class="main-article-title">
+              <a class="article_title" href="{{ url_for('full_activity', activity_id=activity.id) }}">{{ activity.activity_title | safe }}</a>
+            </div>
+            <small class="article_date">[{{ activity.date_created.strftime('%d-%m-%Y') }}]</small>
+            <p class="main-article-partial-text">
+              {{ activity.activity_body | truncate(255) | safe }}
+            </p>
+            <p class="">Από 
+              <span>
+                <a class="author-name" href="{{ url_for('activities_active')}}"> {{activity.author.username}}.</a>
+                <img class="rounded-circle profile-image" alt="{{ activity.author.username }}" src="{{ url_for('static', filename='images/profiles_images/'+activity.author.profile_image) }}" data-holder-rendered="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ activity.author.username }}">
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <hr>
+        
+
+    {% endfor %}
+{% endif %}
+
+
+    {% for page_number in activities.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+
+        {% if page_number %}
+
+            {% if activities.page == page_number %}
+
+                <a class="btn btn-primary" href="{{ url_for('activities_active', page=page_number) }}">{{ page_number }}</a>
+
+            {% else %}
+                <a class="btn btn-outline-primary" href="{{ url_for('activities_active', page=page_number) }}">{{ page_number }}</a>
+            {% endif %}
+
+        {% else %}
+            <span>...</span>
+        {% endif %}
+
+
+    {% endfor %}
+
+
+
+{% endblock content %}
+
+

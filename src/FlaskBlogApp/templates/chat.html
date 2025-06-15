@@ -1,0 +1,51 @@
+{% extends "base.html" %} 
+{% block title %} 
+Chat GPT 
+{%endblock title %} 
+{% block content %}
+    <h1>Send a Message</h1>
+ <form id="chatForm"> 
+ <textarea id="messageInput" name="message" rows="4" cols="50" placeholder="Type your message here..."></textarea>
+ <br> 
+ <button type="submit">Submit</button>
+ </form> 
+ <h2>Response:</h2>
+<div id="responseBox" style="border: 1px solid #ccc; padding: 10px; min-height: 50px;"></div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('chatForm').addEventListener('submit', async (e) => {
+        e.preventDefault(); // prevent normal form submission
+        const chatForm = document.getElementById('chatForm');
+        const message = document.getElementById('messageInput').value;
+        const responseBox = document.getElementById('responseBox');
+        responseBox.textContent = 'Loading...';
+
+        const response = await fetch('/chat_page', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+        if (!response.ok) {
+                responseBox.textContent = `Server error: ${response.status}`;
+                return;
+            }
+
+            const contentType = response.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                responseBox.textContent = 'Error: Response is not JSON!';
+                return;
+            }
+
+        const data = await response.json();
+        if (data.reply) {
+            responseBox.textContent = data.reply;
+        } else if (data.error) {
+            responseBox.textContent = 'Error: ' + data.error;
+        } else {
+            responseBox.textContent = 'No response received.';
+        }
+    });
+});
+</script>
+{% endblock content %}
+

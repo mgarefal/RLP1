@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Microactivities CRUD Form
+{% endblock title %}
+
+
+{% block content %}
+<h2>Create/Update Microactivity</h2>
+<form action="/save_microactivity" method="POST">
+  <input type="hidden" name="id" value="{{ microactivity.id if microactivity else '' }}">
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" value="{{ microactivity.name if microactivity else '' }}"><br>
+
+  <label for="instructions">Instructions:</label>
+  <textarea id="instructions" name="instructions">{{ microactivity.instructions if microactivity else '' }}</textarea><br>
+
+  <input type="submit" value="Save">
+</form>
+
+<h2>Microactivities</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Instructions</th>
+    <th>Actions</th>
+  </tr>
+  {% for microactivity in microactivities %}
+    <tr>
+      <td>{{ microactivity.name }}</td>
+      <td>{{ microactivity.instructions }}</td>
+      <td>
+        <a href="/edit_microactivity/{{ microactivity.id }}">Edit</a> |
+        <a href="/delete_microactivity/{{ microactivity.id }}">Delete</a>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+
+        
+        
+{% endblock content %}

@@ -1,0 +1,327 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <li class="nav-item dropdown">
+
+      <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Remote Labs        
+      </a>
+      {% if current_user.is_authenticated %}
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if JinStr(current_user.workingStatus[0]) != "spectator" %}      
+                  <li>
+                    <a class="dropdown-item" href="/remote_lab1/">Remote Lab (Node-red)</a>
+                  </li>          
+                  <li>
+                    <a class="dropdown-item" href="/remote_lab1_external/">Remote Lab (external)</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/remote_lab1_embedded2/">Remote Lab 1 (embedded)</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/remote_lab1_monitor/">Remote Lab 1 Monitor</a>
+                  </li>
+              {% else %}
+                  <li>
+                    <a class="dropdown-item" href="/remote_lab1_monitor/">Remote Lab (Monitor)</a>
+                  </li>
+              {% endif %}          
+          </ul>
+      {% endif %}
+
+    </li>
+
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Αρχική Σελίδα</a>
+        </li>
+        {% if current_user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Κρατήσεις</a>
+              
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">      
+                  <li>
+                    <a class="dropdown-item" href="/bookings/">Όλες οι κρατήσεις</a>
+                  </li>        
+                  <li>
+                    <a class="dropdown-item" href="/user_bookings/">Οι κρατήσεις μου</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/new_booking/">Νέα κράτηση</a>
+                  </li>
+                
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Σχέδια</a>
+              
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">      
+                  <li>
+                    <a class="dropdown-item" href="/articles_by_author/{{ current_user.get_id() }}">Τα Σχέδια μου</a>
+                  </li>        
+                
+                  <li>
+                    <a class="dropdown-item" href="/new_sketch/">Νέο Σχέδιο</a>
+                  </li>
+                
+                </ul>
+              </li>                          
+              
+              {% if JinStr(current_user.workingStatus[0]) != "spectator"  %}
+                  {% if JinStr(current_user.workingStatus[0]) != "moodleowner"%}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Δραστηριότητες</a>
+                    
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li>
+                            <a class="dropdown-item" href="/activities_active/">Δραστηριότητες</a>
+                          </li>
+                          
+                            {% if current_user.usergroup=="admin" %} 
+                              <li>
+                                <a class="dropdown-item" href="/activities_by_author/{{ current_user.get_id() }}">Δραστηριότητες Χρήστη</a>
+                              </li>
+                                        
+                              <li>
+                                <a class="dropdown-item" href="/new_activity/">Νέα Δραστηριότητα</a>
+                              </li>          
+                            {% endif %}  
+                            
+                        </ul>                    
+                  </li>
+                  {% endif %}
+
+                  {% if panel_data.ActiveActivityID != '-1' %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="/activity_status/">Κατάσταση Δραστηριότητας</a>              
+                      </li>
+                  {% endif %}
+              {% endif %}
+            
+                {% if current_user.usergroup=="admin" %} 
+                    <li class="nav-item dropdown">
+                      <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Διαχείριση Συστήματος</a>
+                      
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                          <a class="dropdown-item" href="/ShowWorkingSessions/">Συνδεδεμένοι Χρήστες</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/config/">Ρυθμίσεις Εφαρμογής</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/change_usergroup/">Ρυθμίσεις ομάδων χρηστων</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/admin_bookings/">Διαχείριση Κρατήσεων</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/microactivities/">Μικροδραστηριότητες</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/check_code/">Έλεγχος Μηχανικής Μάθησης</a>
+                        </li>  
+                        <li>
+                          <a class="dropdown-item" href="/Collect_Controller_data/">Report Shadow microcontroller</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/monitor_shadow_controller/">Show Serial Shadow microcontroller</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/getShadowReport2/">Show I2C Shadow microcontroller</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="/getShadowReport/">Show I2C Shadow All pins</a>
+                        </li>                                                  
+                      </ul>
+                    </li>
+                {% endif %}                  
+        {% endif %}
+      </ul>
+
+      
+      <ul class="nav navbar-nav navbar-right">
+
+        {% if current_user.is_authenticated %}
+          
+        <li class="nav-item">    
+          <span class="navbar-text countdown-timer" id="countdownTimer"></span>
+        </li>
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="rounded-circle navbar-profile-image" src="{{ url_for('static', filename='images/profiles_images/'+current_user.profile_image) }}" alt="{{ current_user.username }}" data-holder-rendered="true" data-bs-toggle="tooltip" data-bs-placement="top", title="{{ current_user.username }}" >
+            </a>
+            
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
+              <li>
+                <a class="dropdown-item" href="/account/">{{ current_user.username }}</a>
+              </li>          
+              <li>
+                <a class="dropdown-item" href="/logout/">Έξοδος</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+        {% else %}
+          
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="/signup/">Εγγραφή</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login_lab/">Είσοδος</a>
+          </li>
+
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+{% if current_user.usergroup != "admin" %}
+  {% if panel_data.user_role != "spectator" %}
+    {% if panel_data.BookingSystem == False %}
+      <script>
+        // Countdown timer function
+        function countdownTimer() {
+          //alert("Booking System OFF");
+          const loginTime = new Date('{{ panel_data.user_loggedTime }}');
+          //adjust wrong store 
+          loginTime.setHours(loginTime.getHours() + 2);
+
+          // Calculate the target date by adding 60 minutes to the login time
+          const TimerMinutes = '{{ panel_data.TimerMinutes }}';
+          const targetDate = new Date(loginTime.getTime() + TimerMinutes * 60000);
+
+          // Update the timer every second
+          setInterval(function() {
+            // Get the current date and time
+            const now = new Date();
+
+            // Calculate the remaining time
+            const remainingTime = targetDate - now;
+
+            // Check if the remaining time is positive
+            if (remainingTime > 0) {
+              // Calculate the days, hours, minutes, and seconds
+              const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+              const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+              const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+              // Format the remaining time as a string
+              const timerString = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+              // Update the timer element
+              
+              document.getElementById("countdownTimer").textContent = timerString;
+            } else {
+              // Display a message when the timer has expired
+              document.getElementById("countdownTimer").textContent = "Λήξη χρόνου";
+              // initiateMaintenance()
+              logoutUser()
+              
+                
+            }
+          }, 1000); // Update every second
+        }
+
+        // Logout user function
+        function logoutUser() {
+          // Perform the necessary logout actions
+          // Redirect to the logout page or perform other logout procedures
+          window.location.href = "/logout/"; 
+        }
+
+        // Initiate maintenance function
+        function initiateMaintenance() {
+          // Perform the necessary maintenance actions
+          // This could include displaying a maintenance message or redirecting to a maintenance page
+          // Example: Display an alert message
+          window.location.href = "/InitiateMaintenance/48/";
+          //alert("Η διάρκεια συνεδρίας έλειξε.");
+        }
+
+
+        // Call the countdownTimer function when the page is loaded
+        document.addEventListener("DOMContentLoaded", countdownTimer);
+      </script>
+  {% else %}
+  <script>
+  // Countdown timer function
+  function countdownTimer() {
+    var loginTime = new Date();  // Current time
+    loginTime.setHours(loginTime.getHours());
+  
+    // Extract the current hour
+    const currentHour = loginTime.getHours();
+  
+    // Set the minutes and seconds of targetTime to '59'
+    const targetHour = currentHour.toString().padStart(2, '0');
+    const targetTime = targetHour + ':59:59';
+  
+    // Create a new Date object with the current date and target time
+    const targetDateTime = new Date();
+    targetDateTime.setHours(targetHour, 59, 59);
+  
+    // Update the timer every second
+    setInterval(function() {
+      // Get the current date and time
+      const now = new Date();
+  
+      // Calculate the remaining time
+      const remainingTime = targetDateTime.getTime() - now.getTime();
+  
+      // Check if the remaining time is positive
+      if (remainingTime > 0) {
+        // Calculate the days, hours, minutes, and seconds
+        const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+  
+        // Format the remaining time as a string
+        const timerString = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+  
+        // Update the timer element
+        document.getElementById("countdownTimer").textContent = timerString;
+      } else {
+        // Display a message when the timer has expired
+        document.getElementById("countdownTimer").textContent = "Λήξη χρόνου";
+        logoutUser();
+        initiateMaintenance();
+      }
+    }, 1000); // Update every second
+  }
+        // Logout user function
+        function logoutUser() {
+          // Perform the necessary logout actions
+          // Redirect to the logout page or perform other logout procedures
+          //window.location.href = "/logout/"; 
+        }
+
+        // Initiate maintenance function
+        function initiateMaintenance() {
+          // Perform the necessary maintenance actions
+          // This could include displaying a maintenance message or redirecting to a maintenance page
+          // Example: Display an alert message
+          //alert("Η διάρκεια συνεδρίας έλειξε.");
+        }
+
+        document.addEventListener("DOMContentLoaded", countdownTimer);
+</script>
+    {% endif %}
+  {% endif %}
+{% endif %}
+  

@@ -1,0 +1,459 @@
+# English translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-27 18:30+0300\n"
+"PO-Revision-Date: 2024-05-27 18:31+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.14.0\n"
+
+# ==========================
+# INDEX
+# ==========================
+
+msgid "Welcome message"
+msgstr "Welcome to the Hellenic Mediterranean University"
+
+msgid "Page Title"
+msgstr "HMU - Hellenic Mediterranean University"
+
+msgid "department_message"
+msgstr "Microelectronics and Internet of Things Laboratory"
+
+# ==========================
+# NAVBAR
+# ==========================
+
+msgid "Remote Labs"
+msgstr "Remote Labs"
+
+msgid "Remote Lab (Node-red)"
+msgstr "Remote Lab (Node-red)"
+
+msgid "Remote Lab (external)"
+msgstr "Remote Lab (external)"
+
+msgid "Remote Lab 1 (embedded)"
+msgstr "Remote Lab 1 (embedded)"
+
+msgid "Remote Lab 1 (Test)"
+msgstr "Remote Lab 1 (Test)"
+
+msgid "Remote Lab 1 Monitor"
+msgstr "Remote Lab 1 Monitor"
+
+msgid "Home Page Button"
+msgstr "Home Page"
+
+msgid "Bookings"
+msgstr "Bookings"
+
+msgid "All Bookings"
+msgstr "All Bookings"
+
+msgid "My Bookings"
+msgstr "My Bookings"
+
+msgid "New Booking"
+msgstr "New Booking"
+
+msgid "Article Button"
+msgstr "Sketches"
+
+msgid "My Sketches"
+msgstr "My Sketches"
+
+msgid "New Sketch"
+msgstr "New Sketch"
+
+msgid "Activities"
+msgstr "Activities"
+
+msgid "User Activities"
+msgstr "User Activities"
+
+msgid "New Activity"
+msgstr "New Activity"
+
+msgid "Activity Status"
+msgstr "Activity Status"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "English"
+msgstr "English"
+
+msgid "Ελληνικά"
+msgstr "Ελληνικά"
+
+msgid "System Management"
+msgstr "System Management"
+
+msgid "Connected Users"
+msgstr "Connected Users"
+
+msgid "Application Settings"
+msgstr "Application Settings"
+
+msgid "User Group Settings"
+msgstr "User Group Settings"
+
+msgid "Booking Management"
+msgstr "Booking Management"
+
+msgid "Microactivities"
+msgstr "Microactivities"
+
+msgid "Machine Learning Check"
+msgstr "Machine Learning Check"
+
+msgid "Report Shadow Microcontroller"
+msgstr "Report Shadow Microcontroller"
+
+msgid "Show Serial Shadow Microcontroller"
+msgstr "Show Serial Shadow Microcontroller"
+
+msgid "Show I2C Shadow Microcontroller"
+msgstr "Show I2C Shadow Microcontroller"
+
+msgid "Show I2C Shadow All Pins"
+msgstr "Show I2C Shadow All Pins"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Sign Up"
+msgstr "Sign Up"
+
+msgid "Log In"
+msgstr "Log In"
+
+msgid "Time Expired"
+msgstr "Time Expired"
+
+
+# ==========================
+# TEST LAB 1
+# ==========================
+
+msgid "Remote Lab Embedded Test"
+msgstr "Remote Lab Embedded Test"
+
+msgid "Test Lab"
+msgstr "Test Lab"
+
+msgid "Live View"
+msgstr "Live View"
+
+msgid "Actuators"
+msgstr "Actuators"
+
+msgid "Potentiometer"
+msgstr "Potentiometer"
+
+msgid "Sketches"
+msgstr "Sketches"
+
+msgid "Select Activity:"
+msgstr "Select Activity:"
+
+msgid "Select an activity"
+msgstr "Select an activity"
+
+msgid "Code:"
+msgstr "Code:"
+
+msgid "Select an activity from above"
+msgstr "Select an activity from above"
+
+msgid "Compile"
+msgstr "Compile"
+
+msgid "Upload Code"
+msgstr "Upload Code"
+
+
+# ==========================
+# LOGIN PAGE
+# ==========================
+
+msgid "Login title"
+msgstr "Login"
+
+msgid "Login body"
+msgstr "Login"
+
+
+# ==========================
+# SINGUP PAGE
+# ==========================
+
+msgid "Signup title"
+msgstr "Sign up"
+
+msgid "Signup body"
+msgstr "Sign up"
+
+msgid "Required email"
+msgstr "Please enter an email."
+
+msgid "Required username"
+msgstr "Please enter an username"
+
+msgid "Required password"
+msgstr "Please enter password"
+
+msgid "Required password 2"
+msgstr "Please retype the password"
+
+msgid "Signup button"
+msgstr "Sign up"
+
+
+# ==========================
+# FORMS.PY
+# ==========================
+
+msgid "Username"
+msgstr "Username"
+
+msgid "This field can't be empty."
+msgstr "This field can't be empty."
+
+msgid "This field must have 3 to 15 characters"
+msgstr "This field must have 3 to 15 characters"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Please enter a valid email address"
+msgstr "Please enter a valid email address"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Passwords must match"
+msgstr "Passwords must match"
+
+msgid "Sign Up"
+msgstr "Sign Up"
+
+msgid "Log In"
+msgstr "Log In"
+
+msgid "This email is already taken."
+msgstr "This email is already taken."
+
+msgid "Remember me"
+msgstr "Remember me"
+
+msgid "Title project without spaces"
+msgstr "Title project without spaces"
+
+msgid "Must be at least 5 characters long"
+msgstr "The text of the article must be at least 5 characters long"
+
+msgid "Activity Title "
+msgstr "Activity Title"
+
+msgid "This field must have 3 to 50 characters"
+msgstr "This field must have 3 to 50 characters"
+
+msgid "Activity Description"
+msgstr "Activity Description"
+
+msgid "This field must have 3 to 50 characters"
+msgstr "This field must have 3 to 50 characters"
+
+msgid "Activity Description"
+msgstr "Activity Description"
+
+msgid "Activity description must be at least 5 characters"
+msgstr "Activity description must be at least 5 characters"
+
+msgid "Shadow microcontroller sketch."
+msgstr "Shadow microcontroller sketch."
+
+msgid "Sketch characters are to few"
+msgstr "Sketch characters are to few"
+
+msgid "Activitys' Image"
+msgstr "Activitys' Image"
+
+msgid "Microactivities path"
+msgstr "Microactivities path"
+
+msgid "Microactivities path must be have at least 5 characters"
+msgstr "Microactivities path must be have at least 5 characters"
+
+msgid "Machine Learning Model"
+msgstr "Machine Learning Model"
+
+msgid "Mission"
+msgstr "Mission"
+
+msgid "Article image"
+msgstr "Article image"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Image Profile"
+msgstr "Image Profile"
+
+msgid "send to"
+msgstr "send to"
+
+msgid "This username already exists!"
+msgstr "This username already exists!"
+
+msgid "Storage"
+msgstr "Storage"
+
+# ==========================
+# LOGIN/LOGOUT FOR ROUTES.PY
+# ==========================
+
+msgid "User_login_fail"
+msgstr "User login failed. Please try again with correct email/password."
+
+
+# ==========================
+# ERROR 404 & ERROR 415
+# ==========================
+
+msgid "error_404"
+msgstr "Error 404: Page Not Found"
+
+# ==========================
+# USER ACTIVE PAGE
+# ==========================
+
+msgid "Required user picture"
+msgstr "Please provide a picture for your profile."
+
+msgid "Account update title"
+msgstr "User Account"
+
+msgid "Account update body"
+msgstr "Account Update Form"
+
+# ==========================
+# ROUTES.PY
+# ==========================
+
+# ====== LOGIN FUNCTION
+
+msgid "The user with email: {email} has not logged in before."
+msgstr "The user with email: {email} has not logged in before."
+
+msgid "The user with email: {email} was successfully created."
+msgstr "The user with email: {email} was successfully created."
+
+msgid "The user with email: {email} WAS NOT created in the lab."
+msgstr "The user with email: {email} WAS NOT created in the lab."
+
+msgid "not admin"
+msgstr "not admin"
+
+msgid "You have logged in as Administrator."
+msgstr "You have logged in as Administrator."
+
+msgid "Previous connection detected, without proper logout. Please log in again."
+msgstr "Previous connection detected, without proper logout. Please log in again."
+
+msgid "Unable to set ActiveActivity"
+msgstr "Unable to set ActiveActivity"
+
+msgid "No activity parameter was sent. The first activity is being activated."
+msgstr "No activity parameter was sent. The first activity is being activated."
+
+msgid "The requested activity was not found. The first activity is being activated."
+msgstr "The requested activity was not found. The first activity is being activated."
+
+msgid "******LaunchId set to "
+msgstr "******LaunchId set to "
+
+msgid "Booking System activated."
+msgstr "Booking System activated."
+
+msgid "Timeslot is not free."
+msgstr "Timeslot is not free."
+
+msgid "User with email: {email} logged into the lab successfully."
+msgstr "User with email: {email} logged into the lab successfully."
+
+msgid "The timeslot has been booked. You are logged in as the Lab Owner."
+msgstr "The timeslot has been booked. You are logged in as the Lab Owner."
+
+msgid "Previous connection detected, without proper logout. Please log in again."
+msgstr "Previous connection detected, without proper logout. Please log in again."
+
+msgid "The timeslot is reserved by another user. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "The timeslot is reserved by another user. You are logged in as a viewer. Some lab functions are disabled."
+
+msgid "This timeslot is available. You can book and log in again as the owner."
+msgstr "This timeslot is available. You can book and log in again as the owner."
+
+msgid "There is no user using the lab. You are logged in as the Lab Owner."
+msgstr "There is no user using the lab. You are logged in as the Lab Owner."
+
+msgid "There is already a user using the lab. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "There is already a user using the lab. You are logged in as a viewer. Some lab functions are disabled."
+
+msgid "test2"
+msgstr "test2"
+
+msgid "User logged out successfully."
+msgstr "User logged out successfully."
+
+msgid "The ActiveActivity was not saved."
+msgstr "The ActiveActivity was not saved."
+
+msgid "You have logged in as Administrator."
+msgstr "You have logged in as Administrator."
+
+msgid "Previous connection detected, without proper logout. Please log in again."
+msgstr "Previous connection detected, without proper logout. Please log in again."
+
+msgid "Unable to set ActiveActivity"
+msgstr "Unable to set ActiveActivity"
+
+msgid "User with email: {email} logged into the lab successfully."
+msgstr "User with email: {email} logged into the lab successfully."
+
+msgid "The timeslot has been booked. You are logged in as the Lab Owner."
+msgstr "The timeslot has been booked. You are logged in as the Lab Owner."
+
+msgid "The timeslot is reserved by another user. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "The timeslot is reserved by another user. You are logged in as a viewer. Some lab functions are disabled."
+
+msgid "This timeslot is available. You can book and log in again as the owner."
+msgstr "This timeslot is available. You can book and log in again as the owner."
+
+msgid "There is no user using the lab. You are logged in as the Lab Owner."
+msgstr "There is no user using the lab. You are logged in as the Lab Owner."
+
+msgid "There is already a user using the lab. You are logged in as a viewer. Some lab functions are disabled."
+msgstr "There is already a user using the lab. You are logged in as a viewer. Some lab functions are disabled."
+
+# ==========================
+# SKETCHES PAGE
+# ==========================
+msgid "Sketches by "
+msgstr "Sketches by "

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Remote Lab Node-Red
+{% endblock title %}
+
+
+{% block content %} 
+      <div class="row my-3 p-3 bg-body rounded shadow-sm">
+        <div class="col-sm-5 col-md-6">        
+	        <object data="http://192.168.1.3:8554"
+          	width="600"
+          	height="600">
+          </object>  
+        </div>
+        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+          <object data="http://192.168.1.2:1880/ui"
+          	width="500"
+          	height="600">
+          </object>
+        </div>
+      </div>
+      <div class="row my-3 p-3 bg-body rounded shadow-sm">
+        <div class="col-sm-5 col-md-6">        
+	        <object data="http://192.168.1.4:8555"
+          	width="600"
+          	height="600">
+          </object>  
+        </div>
+        
+        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+          
+        </div>
+      </div>
+          
+
+{% endblock content %}
+
+

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Όλες οι κρατήσεις
+{% endblock title %}
+
+
+{% block content %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Timeslot</th>
+        <th>User Email</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.date }}</td>
+          <td>{{ booking.start_time }} - {{ booking.end_time }}</td>
+          <td>{{ booking.user_email }}</td>
+          
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+        
+{% endblock content %}

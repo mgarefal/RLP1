@@ -1,0 +1,107 @@
+
+
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{ activity.activity_title }}
+{% endblock title %}
+
+
+{% block content %}
+
+<main role="main" class="container">
+
+{% if activity %}
+
+        <div class="row my-3 p-3 bg-body rounded shadow-sm">
+          <div class="col col-md-12">
+            {% if activity.activity_image and activity.activity_image != 'default_activity_image.jpg' %}
+              <img src="{{ url_for('static', filename='images/activities_images/'+activity.activity_image) }}" alt="" class="img-responsive a_image" width="100%">
+            {% endif %}
+          </div>
+   
+          <div class="col col-md-12">
+            <div class="main-article-title">
+              {{ activity.activity_title | safe }}
+            </div>
+            <small class="article_date">[{{ activity.date_created.strftime('%d-%m-%Y') }}]</small>
+            
+          <div class="form-group">
+              <label for="activity_type">Activity Type:</label>
+              <input type="text" class="form-control" id="activity_type" value="{{ activity.activity_type }}" disabled>
+          </div>
+
+          <div>
+            {% if activity.author == current_user %}
+              <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('edit_activity', activity_id=activity.id) }}">Αλλαγή</a>
+              <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Διαγραφή</button>
+            {% endif %}
+          </div>
+          
+
+          <div>
+            <p class="main-article-partial-text">
+              <textarea class="form-control" type="text" rows="20" cols="100" disabled="True"> {{ activity.activity_body }} </textarea>
+              <!--{{ activity.activity_body | safe }} -->
+            </p>
+          </div> 
+          <div class="form-group mt-3">
+            <label for="activity_metadata">Activity Metadata (JSON):</label>
+            <textarea class="form-control" id="activity_metadata" rows="10" disabled>{{ activity.activity_metadata }}</textarea>
+          </div>
+
+          <div>
+            <p class="main-article-partial-text">
+              <textarea class="form-control" type="text" rows="20" cols="100" disabled="True"> {{ activity.activity_ctrl_sketch }} </textarea>              
+            </p>
+          </div> 
+
+              <div>
+                  <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('activate_activity', activity_id=activity.id) }}">Ενεργοποίηση</a>
+                  <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('submit_activity', activity_id=activity.id) }}">Υποβολή</a>
+              </div>
+                  
+            </div>
+            <p class="">Από 
+              <span>
+                <a class="author-name" href="{{ url_for('activities_by_author', author_id=activity.author.id) }}"> {{ activity.author.username }}
+                  <img class="rounded-circle profile-image" alt="{{ activity.author.username }}" src="{{ url_for('static', filename='images/profiles_images/'+activity.author.profile_image) }}" data-holder-rendered="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ activity.author.username }}">
+                </a>
+              </span>
+            </p>
+          </div>
+        </div>
+
+{% endif %}
+
+
+</main>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Διαγραφή Δραστηριότητας</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Είστε σίγουρος/η ότι θέλετε να διαγράψετε αυτή τη δραστηριότητα;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Όχι</button>
+        <form action="{{ url_for('delete_activity', activity_id=activity.id) }}" method="POST">
+            <input type="submit" class="btn btn-danger" value="Διαγραφή Δραστηριότητας">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}

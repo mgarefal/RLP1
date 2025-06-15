@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+    Node-RED
+{% endblock title %}
+
+{% block content%}
+<div class="container_NodeRED">
+  <h1>Node-RED Dashboard</h1>
+  <iframe src="http://iot.hmu.gr:1880">
+      Your browser does not support iframes.
+  </iframe>
+</div>
+<div class="container_NodeRED">
+  <h1>Node-RED UI</h1>
+  <iframe src="http://iot.hmu.gr:1880/ui">
+      Your browser does not support iframes.
+  </iframe>
+</div>
+
+  
+{% endblock content %}

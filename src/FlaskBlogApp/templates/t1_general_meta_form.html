@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Online Lab Registration Form
+{% endblock title %}
+
+{% block content %}
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            
+            <h3>Online Lab Registration Form</h3>
+
+            <form action="#" method="POST" enctype="multipart/form-data">
+
+                {{ form.hidden_tag() }}
+
+                <!-- Title Field -->
+                <div class="mb-3">
+                    {{ form.title.label(class="form-label") }}
+                    {{ form.title(class="form-control", required=True) }}
+                    <div id="titleHelp" class="form-text">Please enter the title of the online lab.</div>
+
+                    {% if form.title.errors %}
+                        <ul class="errors">
+                            {% for error in form.title.errors %}
+                                <li class="alert text-danger">
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Description Field -->
+                <div class="mb-3">
+                    {{ form.description.label(class="form-label") }}
+                    {{ form.description(class="form-control", required=True) }}
+                    <div id="descriptionHelp" class="form-text">Please enter the description of the online lab.</div>
+
+                    {% if form.description.errors %}
+                        <ul class="errors">
+                            {% for error in form.description.errors %}
+                                <li class="alert text-danger">
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Terms of Service URL -->
+                <div class="mb-3">
+                    {{ form.terms_of_service_url.label(class="form-label") }}
+                    {{ form.terms_of_service_url(class="form-control", required=True) }}
+                    <div id="termsOfServiceHelp" class="form-text">Please provide the URL for the terms of service.</div>
+
+                    {% if form.terms_of_service_url.errors %}
+                        <ul class="errors">
+                            {% for error in form.terms_of_service_url.errors %}
+                                <li class="alert text-danger">
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Contact Email -->
+                <div class="mb-3">
+                    {{ form.contact_email.label(class="form-label") }}
+                    {{ form.contact_email(class="form-control", required=True) }}
+                    <div id="contactHelp" class="form-text">Please provide a valid contact email.</div>
+
+                    {% if form.contact_email.errors %}
+                        <ul class="errors">
+                            {% for error in form.contact_email.errors %}
+                                <li class="alert text-danger">
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- License -->
+                <div class="mb-3">
+                    {{ form.license.label(class="form-label") }}
+                    {{ form.license(class="form-control", required=True) }}
+                    <div id="licenseHelp" class="form-text">Please specify the license type (e.g., CC, Apache 2.0, GNU).</div>
+
+                    {% if form.license.errors %}
+                        <ul class="errors">
+                            {% for error in form.license.errors %}
+                                <li class="alert text-danger">
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- License URL -->
+                <div class="mb-3">
+                    {{ form.license_url.label(class="form-label") }}
+                    {{ form.license_url(class="form-control", required=True) }}
+                    <div id="licenseUrlHelp" class="form-text">Please enter the URL for the license terms.</div>
+
+                    {% if form.license_url.errors %}
+                        <ul class="errors">
+                            {% for error in form.license_url.errors %}
+                                <li class="alert text-danger">
+                                    {{ error }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-3">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

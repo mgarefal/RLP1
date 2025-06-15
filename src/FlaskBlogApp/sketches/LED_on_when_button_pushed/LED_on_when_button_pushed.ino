@@ -1,0 +1,1 @@
+bool isButtonPressed = false; void setup() { pinMode(8, INPUT); pinMode(2, OUTPUT); digitalWrite(2, LOW); } void loop() { bool buttonState = digitalRead(8); if (buttonState == HIGH) { digitalWrite(2, HIGH); isButtonPressed = true; } else { if (isButtonPressed) { digitalWrite(2, LOW); isButtonPressed = false; } } }

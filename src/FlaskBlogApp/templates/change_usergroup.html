@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    ΕΛΜΕΠΑ - Ελληνικό Μεσογειακό Πανεπιστήμιο
+{% endblock title %}
+
+
+{% block content %}
+
+        
+<h1>Change Usergroup</h1>
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Usergroup</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.usergroup }}</td>
+          <td>
+            <input type="checkbox" name="selected_users" value="{{ user.id }}">
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="form-group">
+    {{ form.usergroup.label }}
+    {{ form.usergroup(class="form-control") }}
+  </div>
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+</form> 
+        
+{% endblock content %}
